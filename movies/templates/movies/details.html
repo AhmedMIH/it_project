@@ -3,11 +3,10 @@
 <title>Booking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href={% static 'css/bootstrap.css' % } rel='stylesheet' type='text/css' />
 <link href={% static 'css/style.css' %} rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900'
     rel='stylesheet' type='text/css'>
-    
+
 <div class="container">
     <div class="container_wrap" style="height: 300;">
         <div class="header_top">
@@ -31,18 +30,22 @@
                     <div class="desc1 span_3_of_2">
                         <p class="movie_option"><strong>Country: {{movie.country}} </strong>
                         <p class="movie_option"><strong>Year: </strong>{{movie.year}}</p>
-                        <p class="movie_option"><strong>Category: </strong><a href="#">Adventure</a>, <a
-                                href="#">{{movie.category}}</a></p>
+                        <p class="movie_option"><strong>Category: </strong>{{movie.category}}</a></p>
                         <p class="movie_option"><strong>Release date: </strong>{{movie.year}}</p>
                         <p class="movie_option"><strong>Number of available ticket:
                             </strong>{{movie.available_ticket}}</p>
                         <p class="movie_option"><strong>Description: </strong>{{movie.descr}}</p>
+                        {% if movie.available_ticket == 0 %}
+                        <strong>No Ticket Available Sorry</strong>
+                        {% else %}
                         <form action="" method="POST">
                             {% csrf_token %}
                             <div class="down_btn">
-                                <a class="btn1"><input type="submit" value="Booking"></a>
+                                <input class="btn1" type="submit" value="Booking">
                             </div>
                         </form>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>

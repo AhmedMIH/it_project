@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from .models import *
 
 def index(request):
-    movies_list = Movie.objects.all()
+    movies_list = Movie.objects.all().order_by('id')[1:]
     oneMovie = Movie.objects.get(id=1)
     context = {'movies':movies_list,'oneMovie':oneMovie}
     return render(request,'movies/index.html',context)
